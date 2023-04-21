@@ -5,7 +5,6 @@ import Login from './pages/Login.jsx'
 import HomePage from './pages/HomePage.jsx'
 
 function App() {
-  
   return (
     <BrowserRouter>
       <Routes>
