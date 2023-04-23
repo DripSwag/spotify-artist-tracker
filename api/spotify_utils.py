@@ -1,4 +1,5 @@
-from requests import Request
+import base64
+from requests import Request, post
 
 def getAuthURL():
     scope = "playlist-read-private"
@@ -13,17 +14,28 @@ def getAuthURL():
     return url
 
 def getAccessToken(code):
-    grant_type = "authorization_code"
-    redirect_uri = 'http://localhost:5173/homepage'
+    client_secret = '4cc4226727c3494c9001cad6de52a8d1'
+    client_id = 'babf997949194f5fb13a74e772889468'
+    byteKey = base64.b64encode(client_id.encode() + b":" + client_secret.encode()).decode("utf-8")
 
-    response = Request('POST', 'https//accounts.spotify.com/api/token', json={
-        'grant_type': grant_type,
+    body = {
+        'grant_type': "authorization_code",
         'code': code,
-        'redirect_uri': redirect_uri,
-    }).json()
+        'redirect_uri': 'http://localhost:5173/homepage',
+    }
 
-    accessToken = response.get('access_token')
-    tokenType = response.get('token_type')
-    scope = response.get('token')
-    expiresIn = response.get('expires_in')
-    refreshToken = response.get('refresh_token')
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + byteKey
+    }
+
+    response = post('https://accounts.spotify.com/api/token', data=body, headers=headers).json()
+
+    parsedData = {
+        'accessToken': response.get('access_token'),
+        'tokenType': response.get('token_type'),
+        'expiresIn': response.get('expires_in'),
+        'refreshToken': response.get('refresh_token'),
+    }
+
+    return parsedData
