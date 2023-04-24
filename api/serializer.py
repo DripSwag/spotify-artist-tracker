@@ -4,4 +4,4 @@ from .models import SpotifyAccessCode
 class SpotifyAccessCodeSerializer(ModelSerializer):
     class Meta:
         model = SpotifyAccessCode
-        fields = ['user', 'accessToken', 'refreshToken', 'expiresIn', 'tokenType']
+        fields = '__all__'

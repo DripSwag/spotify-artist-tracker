@@ -9,7 +9,7 @@ class User(models.Model):
 class SpotifyAccessCode(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default = 1)
     createdAt = models.DateTimeField(auto_now_add=True)
-    accessToken = models.CharField(max_length=150)
-    refreshToken = models.CharField(max_length=150)
+    accessToken = models.CharField(max_length=200)
+    refreshToken = models.CharField(max_length=200)
     expiresIn = models.DateTimeField()
     tokenType = models.CharField(max_length=50)

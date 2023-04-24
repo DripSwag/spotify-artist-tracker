@@ -14,8 +14,7 @@ def spotifyAuthentication(request):
 
 @api_view(['POST'])
 def spotifyAccessCode(request):
-    code = request.data
-    parsedData = getAccessToken(code["code"])
-    parsedData["user"] = 1
-    print(parsedData)
+    requestBody = request.data
+    parsedData = getAccessToken(requestBody["code"])
+    parsedData["user"] = requestBody["userId"]
     return instanciateModelSerializer(SpotifyAccessCodeSerializer, parsedData)
