@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path("userAuthenticationURL/", views.spotifyAuthentication),
-    path("spotifyAccessCode/", views.spotifyAccessCode),
+    path("spotifyAccessCodeUpdate/", views.spotifyAccessCodeUpdate),
+    path("spotifyAccessCodeGet/<int:userId>", views.spotifyAccessCodeGet),
 ]

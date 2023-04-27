@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
 from django.db import models
-import base64
 from requests import post
-from .spotify_utils import getByteKey
+from .spotify_utils import getAccessToken, getByteKey
 
 # Create your models here.
 
@@ -19,8 +18,6 @@ class SpotifyAccessCode(models.Model):
     tokenType = models.CharField(max_length=50)
 
     def updateAccessTokenWithRefresh(self):
-        clientVariables = getByteKey()
-
         body = {
             'grant_type': "refresh_token",
             'refresh_token': self.refreshToken,
@@ -28,7 +25,7 @@ class SpotifyAccessCode(models.Model):
 
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': clientVariables[2]
+            'Authorization': getByteKey()
         }
 
         response = post('https://accounts.spotify.com/api/token', data=body, headers=headers).json()
@@ -38,4 +35,18 @@ class SpotifyAccessCode(models.Model):
         self.tokenType = response.get('token_type')
         self.expiresIn = newExpirey
         self.save()
+
+    def updateAccessTokenWithAccess(self, code:str):
+        parsedData = getAccessToken(code)
+
+        self.accessToken = parsedData['accessToken']
+        self.tokenType = parsedData['tokenType']
+        self.expiresIn = datetime.now() + timedelta(seconds=parsedData['expiresIn'])
+        self.refreshToken = parsedData['refreshToken']
+        self.save()
+
+    def getAccessToken(self):
+        if self.expiresIn < datetime.now():
+            self.updateAccessTokenWithRefresh()
+        return self.accessToken
 

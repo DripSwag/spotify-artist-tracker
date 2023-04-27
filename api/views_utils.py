@@ -1,10 +1,16 @@
-from django.http import JsonResponse
 from rest_framework.views import status
+from rest_framework.response import Response
 
+#Make the save part seperate, breaks solid principles
 def instanciateModelSerializer(serializer, data):
     serializedData = serializer(data=data)
     if serializedData.is_valid():
         serializedData.save()
-        return JsonResponse(serializedData.data, status=status.HTTP_201_CREATED)
+        return Response(serializedData.data, status=status.HTTP_201_CREATED)
     else:
-        return JsonResponse(serializedData.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializedData.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def createSerializedResponse(serializer, model):
+    serializedData = serializer(model)
+    return Response(serializedData.data, status=status.HTTP_201_CREATED)
+
