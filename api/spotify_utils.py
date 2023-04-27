@@ -13,11 +13,14 @@ def getAuthURL():
 
     return url
 
-def getAccessToken(code):
+def getByteKey():
     client_secret = '4cc4226727c3494c9001cad6de52a8d1'
     client_id = 'babf997949194f5fb13a74e772889468'
     byteKey = base64.b64encode(client_id.encode() + b":" + client_secret.encode()).decode("utf-8")
 
+    return 'Basic ' + byteKey
+
+def getAccessToken(code):
     body = {
         'grant_type': "authorization_code",
         'code': code,
@@ -26,7 +29,7 @@ def getAccessToken(code):
 
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + byteKey
+        'Authorization': getByteKey()
     }
 
     response = post('https://accounts.spotify.com/api/token', data=body, headers=headers).json()
@@ -39,3 +42,4 @@ def getAccessToken(code):
     }
 
     return parsedData
+
