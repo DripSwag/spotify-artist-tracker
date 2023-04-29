@@ -31,7 +31,7 @@ def spotifyAccessCodeUpdate(request):
 @api_view(['GET'])
 def spotifyAccessCodeGet(request, userId):
     if request.method == 'GET':
-        preExistingCode = SpotifyAccessCode.objects.get(user=userId)
+        preExistingCode = SpotifyAccessCode.objects.get(user=userId).getAccessToken()
         return createSerializedResponse(SpotifyAccessCodeSerializer, preExistingCode)
 
 @api_view(['GET', 'POST'])
@@ -49,4 +49,9 @@ def artistIdDelete(request, artistIdPk):
         artistId = ArtistId.objects.get(id=artistIdPk)
         artistId.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def searchArtists(request, userId, query):
+    if request.method == 'GET':
+        return SpotifyAccessCode.objects.get(user=userId).searchArtists(query)
 
