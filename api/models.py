@@ -9,6 +9,10 @@ class User(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=257)
 
+class ArtistId(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    artistId = models.CharField(max_length=200)
+
 class SpotifyAccessCode(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default = 1)
     createdAt = models.DateTimeField(auto_now_add=True)

@@ -5,4 +5,6 @@ urlpatterns = [
     path("userAuthenticationURL/", views.spotifyAuthentication),
     path("spotifyAccessCodeUpdate/", views.spotifyAccessCodeUpdate),
     path("spotifyAccessCodeGet/<int:userId>", views.spotifyAccessCodeGet),
+    path("artistIdsGet/<int:userId>", views.artistIds),
+    path("artistIdDelete/<int:artistIdPk>", views.artistIdDelete),
 ]

@@ -10,7 +10,7 @@ def instanciateModelSerializer(serializer, data):
     else:
         return Response(serializedData.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def createSerializedResponse(serializer, model):
-    serializedData = serializer(model)
+def createSerializedResponse(serializer, model, many=False):
+    serializedData = serializer(model, many=many)
     return Response(serializedData.data, status=status.HTTP_201_CREATED)
 
