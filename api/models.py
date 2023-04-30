@@ -70,5 +70,5 @@ class SpotifyAccessCode(models.Model):
 
         response = get('https://api.spotify.com/v1/search', params=params, headers=headers).json()
 
-        return Response(response, status=status.HTTP_200_OK)
+        return Response(response['artists']['items'], status=status.HTTP_200_OK)
 

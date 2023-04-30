@@ -31,7 +31,8 @@ def spotifyAccessCodeUpdate(request):
 @api_view(['GET'])
 def spotifyAccessCodeGet(request, userId):
     if request.method == 'GET':
-        preExistingCode = SpotifyAccessCode.objects.get(user=userId).getAccessToken()
+        preExistingCode = SpotifyAccessCode.objects.get(user=userId)
+        preExistingCode.getAccessToken()
         return createSerializedResponse(SpotifyAccessCodeSerializer, preExistingCode)
 
 @api_view(['GET', 'POST'])
