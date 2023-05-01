@@ -2,10 +2,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import status
 from datetime import datetime, timedelta
-from api.models import SpotifyAccessCode, ArtistId
+from api.models import SpotifyAccessCode, ArtistId, User
 from .spotify_utils import getAuthURL, getAccessToken
 from .views_utils import createSerializedResponse, instanciateModelSerializer
-from .serializer import SpotifyAccessCodeSerializer, ArtistIdSerializer
+from .serializer import SpotifyAccessCodeSerializer, ArtistIdSerializer, UserSerializer
 
 # Create your views here.
 
@@ -29,11 +29,13 @@ def spotifyAccessCodeUpdate(request):
             return instanciateModelSerializer(SpotifyAccessCodeSerializer, parsedData)
 
 @api_view(['GET'])
-def spotifyAccessCodeGet(request, userId):
+def getUserDetails(request, username, password):
     if request.method == 'GET':
-        preExistingCode = SpotifyAccessCode.objects.get(user=userId)
-        preExistingCode.getAccessToken()
-        return createSerializedResponse(SpotifyAccessCodeSerializer, preExistingCode)
+        try:
+            user = User.objects.get(username=username, password=password)
+            return createSerializedResponse(UserSerializer, user)
+        except User.DoesNotExist:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET', 'POST'])
 def artistIds(request, userId):

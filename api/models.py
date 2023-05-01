@@ -45,11 +45,12 @@ class SpotifyAccessCode(models.Model):
     def updateAccessTokenWithAccess(self, code:str):
         parsedData = getAccessToken(code)
 
-        self.accessToken = parsedData['accessToken']
-        self.tokenType = parsedData['tokenType']
-        self.expiresIn = datetime.now() + timedelta(seconds=parsedData['expiresIn'])
-        self.refreshToken = parsedData['refreshToken']
-        self.save()
+        if parsedData['accessToken'] != None:
+            self.accessToken = parsedData['accessToken']
+            self.tokenType = parsedData['tokenType']
+            self.expiresIn = datetime.now() + timedelta(seconds=parsedData['expiresIn'])
+            self.refreshToken = parsedData['refreshToken']
+            self.save()
 
     def getAccessToken(self):
         #Datetime now is like that because datetime doesnt include timezone with it. When we make the access token the date model field puts a timezone. Comparison checks require a timezone

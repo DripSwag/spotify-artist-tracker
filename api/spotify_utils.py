@@ -7,7 +7,7 @@ def getAuthURL():
     url = Request('GET', 'https://accounts.spotify.com/authorize', params={
         'scope': scope,
         'response_type': 'code',
-        'redirect_uri': 'http://localhost:5173/homepage',
+        'redirect_uri': 'http://localhost:5173/userlogin',
         'client_id': 'babf997949194f5fb13a74e772889468',
         'show_dialog': True
     }).prepare().url

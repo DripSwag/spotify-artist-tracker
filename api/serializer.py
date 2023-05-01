@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import SpotifyAccessCode, ArtistId
+from .models import SpotifyAccessCode, ArtistId, User
 
 class SpotifyAccessCodeSerializer(ModelSerializer):
     class Meta:
@@ -10,4 +10,9 @@ class ArtistIdSerializer(ModelSerializer):
     class Meta:
         model = ArtistId
         fields = '__all__'
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id']
 
