@@ -1,4 +1,4 @@
-function Login(){
+function SpotifyLogin(){
 	const getSpotifyAuthenticationURL = async () => {
 		const response = await fetch('http://127.0.0.1:8000/api/userAuthenticationURL/')
 		const result = await response.json()
@@ -17,4 +17,4 @@ function Login(){
 		</div>
 	)
 }
-export default Login
+export default SpotifyLogin
