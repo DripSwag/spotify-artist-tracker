@@ -30,21 +30,6 @@ function UserLogin(){
 		}
 	}
 
-	const getAccessCode = async () => {
-		const spotifyAccessCode = await fetch('http://127.0.0.1:8000/api/spotifyAccessCodeUpdate/', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				userId: 1,
-				code: getSpotifyCode()
-			})
-		})
-
-		return spotifyAccessCode
-	}
-
 	return(
 		<section>
 			<h1>Homepage</h1>
