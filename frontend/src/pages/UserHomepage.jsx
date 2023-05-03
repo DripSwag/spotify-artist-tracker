@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
+import SearchBar from "../components/SearchBar"
 
 function UserHomepage(){
 	const location = useLocation()
@@ -21,7 +22,6 @@ function UserHomepage(){
 		spotifyAccessCode.status === 201 ? setAccessCode(true) : setAccessCode(false)
 	}
 
-	//Make this a useCallback. When i make a search input field, this function should be called
 	const getAritstIds = async () => {
 		const artistIds = await fetch(`http://127.0.0.1:8000/api/artistIdsGet/${location.state.id}`).then((data) => data.json())
 		setArtists(artistIds)
@@ -29,12 +29,14 @@ function UserHomepage(){
 
 	useEffect(() => {
 		getAccessCode()
-	}, [getAritstIds])
+		getAritstIds()
+	}, [])
 
 	return(
 		<section>
 			<button onClick={() => {console.log(accessCode)}}>accessCode</button>
 			<button onClick={() => {console.log(artists)}}>aritsts</button>
+			<SearchBar userId={location.state.id} />
 		</section>
 	)
 }
