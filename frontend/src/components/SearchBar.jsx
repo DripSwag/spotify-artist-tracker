@@ -24,7 +24,7 @@ function SearchBar({ userId }){
 			<input type='search' ref={searchBarRef} placeholder='Search Artist' onChange={(input) => {searchArtist(input.target.value)}}></input>
 			{
 				searchResults && searchResults.map((data, keyIndex) => {
-					return <AritstSearchResult key={keyIndex} artistName={data["name"]} searchBarRef={searchBarRef} setSearchResults={setSearchResults} />
+					return <AritstSearchResult key={keyIndex} artistName={data["name"]} searchBarRef={searchBarRef} setSearchResults={setSearchResults} artistId={data["id"]} userId={userId} />
 			})
 			}
 		</div>
