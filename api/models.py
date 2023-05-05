@@ -14,6 +14,8 @@ class User(models.Model):
 class ArtistId(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     artistId = models.CharField(max_length=200)
+    name = models.CharField(max_length=50, default='')
+    pictureLink = models.CharField(max_length=100, default='')
 
 class SpotifyAccessCode(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default = 1)
