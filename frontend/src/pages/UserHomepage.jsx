@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import SearchBar from "../components/SearchBar"
+import ArtistShowcase from "../components/ArtistShowcase"
 
 function UserHomepage(){
 	const location = useLocation()
@@ -37,6 +38,7 @@ function UserHomepage(){
 			<button onClick={() => {console.log(accessCode)}}>accessCode</button>
 			<button onClick={() => {console.log(artists)}}>aritsts</button>
 			<SearchBar userId={location.state.id} />
+			<ArtistShowcase />
 		</section>
 	)
 }

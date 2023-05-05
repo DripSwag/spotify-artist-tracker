@@ -1,5 +1,5 @@
-function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId, artistId }){
-	
+function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId, artistId, pictureLink }){
+
 	const clicked = async () => {
 		const response = await fetch(`http://127.0.0.1:8000/api/artistIdsGet/${userId}`, {
 			method: 'POST',
@@ -8,7 +8,9 @@ function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId
 			},
 			body: JSON.stringify({
 				'user': userId,
-				'artistId': artistId
+				'artistId': artistId,
+				'name': artistName,
+				'pictureLink': pictureLink
 			})
 		})
 		if(response.status == 201){
@@ -19,6 +21,7 @@ function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId
 	return(
 		<div onClick={clicked}>
 			<p>{artistName}</p>
+			<img src={pictureLink}></img>
 		</div>
 	)
 }
