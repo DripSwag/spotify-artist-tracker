@@ -34,11 +34,12 @@ function UserHomepage(){
 	}, [])
 
 	return(
-		<section>
-			<button onClick={() => {console.log(accessCode)}}>accessCode</button>
-			<button onClick={() => {console.log(artists)}}>aritsts</button>
-			<SearchBar userId={location.state.id} />
-			<ArtistShowcase />
+		<section className="flex static">
+			<div className="w-1/2 h-screen bg-[#77DD77]"></div>
+			<div className="w-1/2 bg-zinc-950 h-screen flex flex-col">
+				<SearchBar userId={location.state.id} />
+				<ArtistShowcase />
+			</div>
 		</section>
 	)
 }
