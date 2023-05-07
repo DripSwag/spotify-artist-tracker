@@ -7,6 +7,7 @@ function UserHomepage(){
 	const location = useLocation()
 	const [accessCode, setAccessCode] = useState()
 	const [artists, setArtists] = useState()
+	const [searching, setSearching] = useState()
 
 	const getAccessCode = async () => {
 		const spotifyAccessCode = await fetch('http://127.0.0.1:8000/api/spotifyAccessCodeUpdate/', {
@@ -43,8 +44,8 @@ function UserHomepage(){
 		<section className="flex static">
 			<div className="w-1/2 h-screen bg-[#77DD77]"></div>
 			<div className="w-1/2 bg-zinc-950 h-screen flex flex-col">
-				<SearchBar userId={location.state.id} getArtistsIds={getArtistsIds} />
-				<ArtistShowcase artists={artists} getArtistsIds={getArtistsIds} />
+				<SearchBar userId={location.state.id} getArtistsIds={getArtistsIds} setSearching={setSearching} />
+				<ArtistShowcase artists={artists} getArtistsIds={getArtistsIds} searching={searching} />
 			</div>
 		</section>
 	)

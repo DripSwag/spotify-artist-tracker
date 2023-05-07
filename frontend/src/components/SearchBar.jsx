@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import AritstSearchResult from "./ArtistSearchResult"
 
-function SearchBar({ userId, getArtistsIds }){
+function SearchBar({ userId, getArtistsIds, setSearching }){
 	const searchBarRef = useRef(null)
 	const [searchResults, setSearchResults] = useState([])
 
@@ -9,9 +9,11 @@ function SearchBar({ userId, getArtistsIds }){
 		if(searchQuery){
 			const artistSearchBody = await fetch(`http://127.0.0.1:8000/api/searchArtists/${userId}/${parseSearchQuery(searchQuery)}`).then((data) => data.json())
 			setSearchResults(artistSearchBody)
+			setSearching(true)
 		}
 		else{
 			setSearchResults([])
+			setSearching(false)
 		}
 	}
 
