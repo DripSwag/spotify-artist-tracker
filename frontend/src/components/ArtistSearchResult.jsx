@@ -22,7 +22,7 @@ function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId
 
 	return(
 		<div onClick={clicked} className='flex h-24 items-center gap-4 bg-neutral-800 p-4 rounded-lg'>
-			<img src={pictureLink} className='aspect-square h-full rounded-full'></img>
+			<img src={pictureLink} alt='No Image' className='aspect-square h-full rounded-full'></img>
 			<p className="font-bold">{artistName}</p>
 		</div>
 	)
