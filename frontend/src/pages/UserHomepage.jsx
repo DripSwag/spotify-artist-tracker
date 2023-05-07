@@ -25,17 +25,18 @@ function UserHomepage(){
 
 	//Move this to utils to make it cleaner. This is messy passing through every child.
 	const getArtistsIds = useCallback(async () => {
-		const response = await fetch(`http://127.0.0.1:8000/api/artistIdsGet/1`).then((data) => data.json())
-		if(Object.keys(response).length === 0){
+		const response = await fetch(`http://127.0.0.1:8000/api/artistIdsGet/1`)
+		if(response.status === 204){
 			setArtists([])
 		}
 		else{
-			setArtists(response)
+			setArtists(await response.json())
 		}
 	}, [setArtists])
 
 	useEffect(() => {
 		getAccessCode()
+		getArtistsIds()
 	}, [])
 
 	return(
