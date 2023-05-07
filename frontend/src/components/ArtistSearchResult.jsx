@@ -1,4 +1,4 @@
-function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId, artistId, pictureLink }){
+function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId, artistId, pictureLink, getArtistsIds }){
 
 	const clicked = async () => {
 		const response = await fetch(`http://127.0.0.1:8000/api/artistIdsGet/${userId}`, {
@@ -15,6 +15,7 @@ function AritstSearchResult({ artistName, searchBarRef, setSearchResults, userId
 		})
 		if(response.status == 201){
 			searchBarRef.current.value = ''; setSearchResults([])
+			getArtistsIds()
 		}
 	}
 

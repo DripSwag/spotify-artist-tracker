@@ -1,9 +1,10 @@
-function ArtistLabel({ pk, name, pictureLink, queueNumber }){
+function ArtistLabel({ pk, name, pictureLink, queueNumber, getArtistsIds }){
 
 	const removeFromQueue = async () => {
 		const response = await fetch(`http://127.0.0.1:8000/api/artistIdDelete/${pk}`,{
 			method: 'DELETE'
 		})
+		getArtistsIds()
 	}
 
 	return(

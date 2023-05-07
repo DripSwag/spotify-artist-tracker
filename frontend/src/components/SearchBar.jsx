@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import AritstSearchResult from "./ArtistSearchResult"
 
-function SearchBar({ userId }){
+function SearchBar({ userId, getArtistsIds }){
 	const searchBarRef = useRef(null)
 	const [searchResults, setSearchResults] = useState([])
 
@@ -24,7 +24,7 @@ function SearchBar({ userId }){
 			<input type='search' ref={searchBarRef} placeholder='Search Artist' onChange={(input) => {searchArtist(input.target.value)}}></input>
 			{
 				searchResults && searchResults.map((data, keyIndex) => {
-					return <AritstSearchResult key={keyIndex} artistName={data["name"]} searchBarRef={searchBarRef} setSearchResults={setSearchResults} artistId={data["id"]} userId={userId} pictureLink={data["images"][1]['url']} />
+					return <AritstSearchResult key={keyIndex} artistName={data["name"]} searchBarRef={searchBarRef} setSearchResults={setSearchResults} artistId={data["id"]} userId={userId} pictureLink={data["images"][1]['url']} getArtistsIds={getArtistsIds} />
 			})
 			}
 		</div>
