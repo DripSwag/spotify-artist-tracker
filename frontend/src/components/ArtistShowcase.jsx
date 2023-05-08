@@ -6,7 +6,13 @@ function ArtistShowcase({ artists, getArtistsIds, searching }){
 			<h1 className="font-bold text-4xl my-2">Queue</h1>
 			{
 				artists && artists.map((data, index) => {
-					return <ArtistLabel key={data['id']} queueNumber={index + 1} pk={data['id']} name={data['name']} pictureLink={data['pictureLink']} getArtistsIds={getArtistsIds}/>
+					return <ArtistLabel
+										key={data['id']}
+										queueNumber={index + 1}
+										pk={data['id']} name={data['name']}
+										pictureLink={data['pictureLink']}
+										getArtistsIds={getArtistsIds}
+									/>
 			})
 			}
 		</div>

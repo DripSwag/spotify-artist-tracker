@@ -35,7 +35,17 @@ function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 				<h1 className="font-bold text-4xl">Artists</h1>
 				{
 					searchResults && searchResults.map((data, keyIndex) => {
-						return <AritstSearchResult key={keyIndex} artistName={data["name"]} searchBarRef={searchBarRef} setSearchResults={setSearchResults} artistId={data["id"]} userId={userId} pictureLink={data["images"].length !== 0 ? data['images'][0]['url'] : ''} getArtistsIds={getArtistsIds} setSearching={setSearching} />
+						return <AritstSearchResult
+											key={keyIndex}
+											artistName={data["name"]}
+											searchBarRef={searchBarRef}
+											setSearchResults={setSearchResults}
+											artistId={data["id"]}
+											userId={userId}
+											pictureLink={data["images"].length !== 0 ? data['images'][0]['url'] : ''}
+											getArtistsIds={getArtistsIds}
+											setSearching={setSearching}
+										/>
 				})
 				}
 			</div>

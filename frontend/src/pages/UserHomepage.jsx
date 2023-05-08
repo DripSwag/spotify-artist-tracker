@@ -44,8 +44,17 @@ function UserHomepage(){
 		<section className="flex static">
 			<div className="w-1/2 h-screen bg-[#77DD77]"></div>
 			<div className="w-1/2 bg-zinc-950 h-screen flex flex-col py-6 px-10 gap-8 items-center">
-				<SearchBar userId={location.state.id} getArtistsIds={getArtistsIds} setSearching={setSearching} searching={searching} />
-				<ArtistShowcase artists={artists} getArtistsIds={getArtistsIds} searching={searching} />
+				<SearchBar
+					userId={location.state.id}
+					getArtistsIds={getArtistsIds}
+					setSearching={setSearching}
+					searching={searching}
+				/>
+				<ArtistShowcase
+					artists={artists}
+					getArtistsIds={getArtistsIds}
+					searching={searching}
+				/>
 			</div>
 		</section>
 	)
