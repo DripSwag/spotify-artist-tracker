@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import AritstSearchResult from "./ArtistSearchResult"
+import { motion } from 'framer-motion'
 
 function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 	const searchBarRef = useRef(null)
@@ -16,12 +17,10 @@ function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 				const artistSearchBody = await fetch(`http://127.0.0.1:8000/api/searchArtists/${userId}/${parseSearchQuery(searchBody)}`).then((data) => data.json())
 				setSearchResults(artistSearchBody)
 				setSearching(true)
-				console.log("search")
 			}
 			else{
 				setSearchResults([])
 				setSearching(false)
-				console.log("not search")
 			}
 
 			return () => clearTimeout(timeOut)

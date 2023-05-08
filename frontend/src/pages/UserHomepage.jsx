@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom"
 import { useState, useEffect, useCallback } from "react"
 import SearchBar from "../components/SearchBar"
 import ArtistShowcase from "../components/ArtistShowcase"
+import { motion } from "framer-motion"
 
 function UserHomepage(){
 	const location = useLocation()
@@ -41,8 +42,9 @@ function UserHomepage(){
 	}, [])
 
 	return(
-		<section className="flex static">
-			<div className="w-1/2 h-screen bg-[#77DD77]"></div>
+		<section className="flex static cursor-default">
+			<div className="w-1/2 h-screen bg-[#77DD77]">
+			</div>
 			<div className="w-1/2 bg-zinc-950 h-screen flex flex-col py-6 px-10 gap-8 items-center">
 				<SearchBar
 					userId={location.state.id}
