@@ -45,6 +45,7 @@ function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 										/>
 				})
 				}
+				<h1 className={`${searchResults.length === 0 && searching ? '' : 'hidden'} text-3xl font-bold`}>No results</h1>
 			</div>
 		</div>
 	)
