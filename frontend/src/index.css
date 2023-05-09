@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base{
-  p {
-	@apply text-white
+  p{
+    @apply text-white
   }
   h2{
     @apply text-white
@@ -12,4 +12,9 @@
   h1{
     @apply text-white
   }
+}
+
+.loginInput{
+  border-bottom-width: 2px;
+  padding: 1rem;
 }

@@ -31,13 +31,15 @@ function UserLogin(){
 	}
 
 	return(
-		<section>
-			<h1>Homepage</h1>
-			<form>
-				<input type='text' placeholder='Username' onChange={(input) => {setUsername(input.target.value)}}></input>
-				<input type='text' placeholder='Password' onChange={(input) => {setPassword(input.target.value)}}></input>
-			</form>
-			<button onClick={loginCall}>Login</button>
+		<section className="flex flex-col justify-center items-center h-screen">
+			<h1 className="text-black text-4xl font-bold">Welcome Back</h1>
+			<div className="flex flex-col h-1/2 p-4 rounded-lg justify-evenly">
+				<form className="flex flex-col gap-4">
+					<input type='text' placeholder='Username' onChange={(input) => {setUsername(input.target.value)}} className='loginInput'></input>
+					<input type='password' placeholder='Password' onChange={(input) => {setPassword(input.target.value)}} className='loginInput'></input>
+				</form>
+				<button onClick={loginCall} className='w-full rounded-lg bg-black text-white py-2 font-semibold'>Login</button>
+			</div>
 		</section>
 	)
 }
