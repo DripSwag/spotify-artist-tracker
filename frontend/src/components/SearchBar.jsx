@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react"
 import AritstSearchResult from "./ArtistSearchResult"
-import { motion } from 'framer-motion'
 
 function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 	const searchBarRef = useRef(null)
@@ -20,9 +19,9 @@ function SearchBar({ userId, getArtistsIds, setSearching, searching }){
 			else{
 				setSearchResults([])
 			}
-
-			return () => clearTimeout(timeOut)
 		}, 400)
+
+		return () => clearTimeout(timeOut)
 	}, [searchBody])
 
 	return(
