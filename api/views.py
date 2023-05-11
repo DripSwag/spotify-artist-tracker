@@ -23,7 +23,7 @@ def spotifyAccessCodeUpdate(request):
             preExistingCode.updateAccessTokenWithAccess(requestBody['code'])
             return createSerializedResponse(SpotifyAccessCodeSerializer, preExistingCode)
         except SpotifyAccessCode.DoesNotExist:
-            parsedData = getAccessToken(requestBody["code"])
+            parsedData = getAccessToken(code=requestBody["code"])
             parsedData["user"] = requestBody["userId"]
             parsedData["expiresIn"] = datetime.now() + timedelta(seconds=parsedData["expiresIn"])
             return instanciateModelSerializer(SpotifyAccessCodeSerializer, parsedData)
