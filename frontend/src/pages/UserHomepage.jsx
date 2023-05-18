@@ -2,12 +2,15 @@ import { useLocation } from "react-router-dom"
 import { useState, useEffect, useCallback } from "react"
 import SearchBar from "../components/SearchBar"
 import ArtistShowcase from "../components/ArtistShowcase"
+import WebPlayback from "../components/WebPlayback"
 
 function UserHomepage(){
 	const location = useLocation()
 	const [accessCode, setAccessCode] = useState()
 	const [artists, setArtists] = useState()
 	const [searching, setSearching] = useState()
+	//make accesscode a object with a valid key and a key for the actual token
+	const [accessToken, setAccessToken] = useState()
 
 	const getAccessCode = async () => {
 		const spotifyAccessCode = await fetch('http://127.0.0.1:8000/api/spotifyAccessCodeUpdate/', {
@@ -21,6 +24,7 @@ function UserHomepage(){
 			})
 		})
 
+		setAccessToken(await spotifyAccessCode.json().then((data) => {return data['accessToken']}))
 		spotifyAccessCode.status === 201 ? setAccessCode(true) : setAccessCode(false)
 	}
 
@@ -41,8 +45,12 @@ function UserHomepage(){
 	}, [])
 
 	return(
-		<section className="flex static">
-			<div className="w-1/2 h-screen bg-[#77DD77]"></div>
+		<section className="flex static cursor-default">
+			<div className="w-1/2 h-screen bg-[#77DD77]">
+				<WebPlayback
+					accessToken={accessToken}
+				/>
+			</div>
 			<div className="w-1/2 bg-zinc-950 h-screen flex flex-col py-6 px-10 gap-8 items-center">
 				<SearchBar
 					userId={location.state.id}

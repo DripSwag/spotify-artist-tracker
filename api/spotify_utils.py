@@ -25,7 +25,7 @@ def getAccessToken(code):
     body = {
         'grant_type': "authorization_code",
         'code': code,
-        'redirect_uri': 'http://localhost:5173/homepage',
+        'redirect_uri': 'http://localhost:5173/userlogin',
     }
 
     headers = {
