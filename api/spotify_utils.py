@@ -2,7 +2,8 @@ import base64
 from requests import Request, post
 
 def getAuthURL():
-    scope = "playlist-read-private user-read-playback-state user-modify-playback-state"
+    scope = "playlist-read-private user-read-playback-state user-modify-playback-state streaming user-read-email user-read-private"
+    print(scope)
 
     url = Request('GET', 'https://accounts.spotify.com/authorize', params={
         'scope': scope,

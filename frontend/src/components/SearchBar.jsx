@@ -1,3 +1,4 @@
+// @format
 import { useRef, useState, useEffect } from "react";
 import AritstSearchResult from "./ArtistSearchResult";
 
